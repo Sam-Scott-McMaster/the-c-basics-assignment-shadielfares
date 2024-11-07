@@ -15,10 +15,13 @@ jobs:
 
       - name: Upload Test Results 
         if: ${{ always() }} 
-
-      - name: upload binary			
         uses: actions/upload-artifact@v4	
         with:
           name: Test Results 
           path: ./ctest
 
+      - name: Upload Binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: Build Output
+          path: ./ctest
