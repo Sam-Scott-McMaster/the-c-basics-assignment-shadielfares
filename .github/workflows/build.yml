@@ -11,17 +11,17 @@ jobs:
       - uses: actions/checkout@v4		
         
       - name: Run Tests
-        run: make ctest; ./test_script >test_results.txt; gcov ctest-convert.c; gcov ctest-parser.c
+        run: make ctest; ./test_script >test_results.txt; gcov ctest-convert.c>>test_results2.txt; gcov ctest-parser.c >test_results2.txt
 
       - name: Upload Test Results 
         if: ${{ always() }} 
         uses: actions/upload-artifact@v4	
         with:
           name: Test Results 
-          path: ./ctest
+          path: ./test_results.txt
 
-      - name: Upload Binary
+      - name: Upload Test Results2
         uses: actions/upload-artifact@v4
         with:
-          name: Build Output
-          path: ./ctest
+          name: Test Results GCOV
+          path: ./test_results2.txt
