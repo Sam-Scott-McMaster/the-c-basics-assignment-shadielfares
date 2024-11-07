@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v4		
         
       - name: Run Tests
-        run: make ctest; ./test_script >test_results.txt; gcov ctest-convert.c; gcov ctest-parcer.c
+        run: make ctest; ./test_script >test_results.txt; gcov ctest-convert.c; gcov ctest-parser.c
 
       - name: Upload Test Results 
         if: ${{ always() }} 
