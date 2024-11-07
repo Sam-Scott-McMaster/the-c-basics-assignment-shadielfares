@@ -1,4 +1,4 @@
-name: build script for hello.c		
+name: build script for c-basics
 
 on:							
   push:
@@ -9,13 +9,16 @@ jobs:
     runs-on: ubuntu-latest			
     steps:
       - uses: actions/checkout@v4		
+        
+      - name: Run Tests
+        run: make ctest; ./test_script >test_results.txt; gcov ctest-convert.c; gcov ctest-parcer.c
 
-      - name: build hello			
-        run: gcc -o hello hello.c		
+      - name: Upload Test Results 
+        if: ${{ always() }} 
 
       - name: upload binary			
         uses: actions/upload-artifact@v4	
         with:
-          name: Hello World			
-          path: ./hello				
+          name: Test Results 
+          path: ./ctest
 
