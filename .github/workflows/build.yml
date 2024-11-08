@@ -25,6 +25,7 @@ jobs:
           path: ./test_results.txt
 
       - name: Upload Test Results2
+        if: ${{ always() }} 
         uses: actions/upload-artifact@v4
         with:
           name: Test Results GCOV
