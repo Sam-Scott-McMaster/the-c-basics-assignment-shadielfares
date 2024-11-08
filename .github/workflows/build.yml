@@ -14,8 +14,8 @@ jobs:
         run: |
           make ctest
           ./test_script > test_results.txt
-          gcov ctest-convert.c >> test_results2.txt
-          gcov ctest-parser.c >> test_results2.txt
+          gcov ./ctest-convert.c >> test_results2.txt
+          gcov ./ctest-parser.c >> test_results2.txt
 
       - name: Upload Test Results 
         if: ${{ always() }} 
